@@ -27,7 +27,7 @@
             const whatsapp = getCookie('whatsapp');
             let newWhatsApp;
             if (!whatsapp) {
-                newWhatsApp = Math.floor(Math.random() * 2) + 1;
+                newWhatsApp = Math.floor(Math.random() * 4) + 1;
                 setCookie('whatsapp', newWhatsApp, 365);
             } else {
                 newWhatsApp = whatsapp;
@@ -49,10 +49,10 @@
         // Função para obter o link do WhatsApp
         function getWhatsAppLink(source, whatsapp) {
             const links = {
-                'facebook': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana,%20vim%20do%20Facebook..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana,%20vim%20do%20Facebook..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5'],
-                'instagram': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana,%20vim%20do%20Instagram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana,%20vim%20do%20Instagram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5'],
-                'telegram': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana,%20vim%20do%20Telegram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana,%20vim%20do%20Telegram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5'],
-                'other': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5']
+                'facebook': ['https://api.whatsapp.com/send?phone=554185233258&text=Oii%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554191419870&text=Oii%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554185323069&text=Oii%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=5541992131329&text=Oii%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈'],
+                'instagram': ['https://api.whatsapp.com/send?phone=554185233258&text=Oii%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554191419870&text=Oii%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554185323069&text=Oii%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=5541992131329&text=Oii%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈'],
+                'telegram': ['https://api.whatsapp.com/send?phone=554185233258&text=Oii%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554191419870&text=Oii%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554185323069&text=Oii%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=5541992131329&text=Oii%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈'],
+                'other': ['https://api.whatsapp.com/send?phone=554185233258&text=Oii%20Lê...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554191419870&text=Oii%20Lê...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=554185323069&text=Oii%20Lê...%20Quero%20saber%20mais%20🍑😈', 'https://api.whatsapp.com/send?phone=5541992131329&text=Oii%20Lê...%20Quero%20saber%20mais%20🍑😈']
             };
             return links[source][whatsapp - 1];
         }
@@ -62,7 +62,7 @@
             const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             const expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/;domain=.divulgalindas.github.io";
+            document.cookie = name + "=" + value + ";" + expires + ";path=/;domain=.lewerneck.github.io";
         }
 
         // Função para obter um cookie
