@@ -3,15 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bia Hoover</title>
-    <link rel="icon" href="https://biahoover.github.io/whatsapp/©2024 Bianca Hoover..png" type="image/png">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Adriana Santos">
-    <meta property="og:description" content="Contato Whatsapp">
-    <meta property="og:image" content="https://biahoover.github.io/whatsapp/©2024 Bianca Hoover..png">
-    <meta property="og:url" content="lewerncek.github.io/adriana_zap>
-    <meta property="og:type" content="website">
+   
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -23,7 +15,7 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '951503763143037');
+      fbq('init', '371221302453542');
       fbq('track', 'PageView_SiteWhatsapp');
     </script>
     <!-- End Facebook Pixel Code -->
@@ -35,7 +27,7 @@
             const whatsapp = getCookie('whatsapp');
             let newWhatsApp;
             if (!whatsapp) {
-                newWhatsApp = Math.floor(Math.random() * 4) + 1;
+                newWhatsApp = Math.floor(Math.random() * 2) + 1;
                 setCookie('whatsapp', newWhatsApp, 365);
             } else {
                 newWhatsApp = whatsapp;
@@ -57,10 +49,10 @@
         // Função para obter o link do WhatsApp
         function getWhatsAppLink(source, whatsapp) {
             const links = {
-                'facebook': ['https://typebot.co/fbh1', 'https://typebot.co/fbh3', 'https://typebot.co/fbh5', 'https://typebot.co/fbh6'],
-                'instagram': ['https://typebot.co/ibh1', 'https://typebot.co/ibh3', 'https://typebot.co/ibh5', 'https://typebot.co/ibh6'],
-                'telegram': ['https://typebot.co/tbh1', 'https://typebot.co/tbh3', 'https://typebot.co/tbh5', 'https://typebot.co/tbh6'],
-                'other': ['https://typebot.co/nbh1', 'https://typebot.co/nbh3', 'https://typebot.co/nbh5', 'https://typebot.co/nbh6']
+                'facebook': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana,%20vim%20do%20Facebook..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana,%20vim%20do%20Facebook..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5'],
+                'instagram': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana,%20vim%20do%20Instagram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana,%20vim%20do%20Instagram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5'],
+                'telegram': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana,%20vim%20do%20Telegram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana,%20vim%20do%20Telegram..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5'],
+                'other': ['https://api.whatsapp.com/send?phone=557996436865&text=Oii%20Adriana..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5', 'https://api.whatsapp.com/send?phone=557999632837&text=Oii%20Adriana..%20quero%20te%20conhecer%20melhor%20%F0%9F%98%88%F0%9F%94%A5']
             };
             return links[source][whatsapp - 1];
         }
@@ -70,7 +62,7 @@
             const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             const expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/;domain=.lewerneck1.github.io";
+            document.cookie = name + "=" + value + ";" + expires + ";path=/;domain=.divulgalindas.github.io";
         }
 
         // Função para obter um cookie
