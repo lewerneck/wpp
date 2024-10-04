@@ -51,7 +51,7 @@
             if (referrer.includes('facebook.com')) return 'Facebook';
             if (referrer.includes('instagram.com')) return 'Instagram';
             if (referrer.includes('telegram.org')) return 'Telegram';
-            return 'outra plataforma';
+            return 'seu site';
         }
 
         // Função para obter a saudação com base no horário local do usuário
@@ -66,17 +66,22 @@
             }
         }
 
-        // Função para obter o link do WhatsApp com saudação, origem e número de telefone
-        function getWhatsAppLink(phoneNumbers, source, whatsapp, greeting) {
-            const phoneNumber = phoneNumbers[whatsapp]; // Seleciona o número de WhatsApp
-            console.log("Número selecionado:", phoneNumber); // Debug
+       // Função para obter o link do WhatsApp com saudação, origem e número de telefone
+function getWhatsAppLink(phoneNumbers, source, whatsapp, greeting) {
+    const phoneNumber = phoneNumbers[whatsapp]; // Seleciona o número de WhatsApp
 
-            // Gera a mensagem com a saudação, origem e número do WhatsApp
-            const message = `Oii Lê, Vim do ${source}${greeting} Quero saber mais sobre seus conteúdos 🍑😈`;
+    // Gera a mensagem com a saudação
+    let message;
+    if (source === 'Facebook' || source === 'Instagram' || source === 'Telegram') {
+        message = `Oii Lê, Vim do ${source}${greeting}! Quero saber mais sobre seus conteúdos 🍑😈`;
+    } else {
+        message = `Oii Lê ${greeting} Quero saber mais sobre seus conteúdos 🍑😈`;
+    }
 
-            // Monta a URL do WhatsApp com a mensagem
-            return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-        }
+    // Monta a URL do WhatsApp com a mensagem
+    return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+}
+
 
         // Função para definir um cookie
         function setCookie(name, value, days) {
