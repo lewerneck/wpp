@@ -3,21 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <!-- Facebook Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '424744653371009');
-      fbq('track', 'PageView_SiteWhatsapp');
-    </script>
-    <!-- End Facebook Pixel Code -->
 </head>
 <body>
     <script>
@@ -25,69 +10,56 @@
         function redirectToWhatsApp() {
             const whatsapp = getCookie('whatsapp');
             let newWhatsApp;
+            const phoneNumbers = [
+                '554185233258', 
+                '554191419870', 
+                '554185323069'
+            ];
+
             if (!whatsapp) {
-                newWhatsApp = Math.floor(Math.random() * 4) + 1;
+                // Gera um número aleatório com base no tamanho da lista de números
+                newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
                 setCookie('whatsapp', newWhatsApp, 365);
             } else {
                 newWhatsApp = whatsapp;
             }
+
             const source = determineSource();
             const greeting = getGreeting();  // Obtém a saudação
-            const link = getWhatsAppLink(source, newWhatsApp, greeting); // Passa a saudação
+            const link = getWhatsAppLink(phoneNumbers, source, newWhatsApp, greeting); // Passa a lista de números, saudação, e origem
             window.location.href = link;
         }
 
         // Função para determinar a origem do usuário
         function determineSource() {
             const referrer = document.referrer.toLowerCase();
-            if (referrer.includes('facebook.com')) return 'facebook';
-            if (referrer.includes('instagram.com')) return 'instagram';
-            if (referrer.includes('telegram.org')) return 'telegram';
-            return 'other';
+            if (referrer.includes('facebook.com')) return 'Facebook';
+            if (referrer.includes('instagram.com')) return 'Instagram';
+            if (referrer.includes('telegram.org')) return 'Telegram';
+            return 'outra plataforma';
         }
 
         // Função para obter a saudação com base no horário local do usuário
         function getGreeting() {
             const hours = new Date().getHours();
             if (hours >= 5 && hours < 12) {
-                return "Bom dia";
+                return ",";
             } else if (hours >= 12 && hours < 18) {
-                return "Boa tarde";
+                return "..";
             } else {
-                return "Boa noite";
+                return "...";
             }
         }
 
+        // Função para obter o link do WhatsApp com saudação, origem e número de telefone
+        function getWhatsAppLink(phoneNumbers, source, whatsapp, greeting) {
+            const phoneNumber = phoneNumbers[whatsapp]; // Seleciona o número de WhatsApp
 
-        // Função para obter o link do WhatsApp com saudação
-        function getWhatsAppLink(source, whatsapp, greeting) {
-            const links = {
-                'facebook': [
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554191419870&text=${greeting}%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185323069&text=${greeting}%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê,%20vim%20do%20Facebook...%20Quero%20saber%20mais%20🍑😈`
-                ],
-                'instagram': [
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554191419870&text=${greeting}%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185323069&text=${greeting}%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê,%20vim%20do%20Instagram...%20Quero%20saber%20mais%20🍑😈`
-                ],
-                'telegram': [
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554191419870&text=${greeting}%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185323069&text=${greeting}%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê,%20vim%20do%20Telegram...%20Quero%20saber%20mais%20🍑😈`
-                ],
-                'other': [
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554191419870&text=${greeting}%20Lê...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185323069&text=${greeting}%20Lê...%20Quero%20saber%20mais%20🍑😈`, 
-                    `https://api.whatsapp.com/send?phone=554185233258&text=${greeting}%20Lê...%20Quero%20saber%20mais%20🍑😈`
-                ]
-            };
-            return links[source][whatsapp - 1];
+            // Gera a mensagem com a saudação, origem e número do WhatsApp
+            const message = `Oi Lê, Vim do ${source}${greeting} Quero saber mais 🍑😈`;
+
+            // Monta a URL do WhatsApp com a mensagem
+            return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
         }
 
         // Função para definir um cookie
