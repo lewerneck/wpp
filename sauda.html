@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '424744653371009');
+      fbq('track', 'PageView_SiteWhatsapp');
+    </script>
+    <!-- End Facebook Pixel Code -->
 </head>
 <body>
     <script>
@@ -11,9 +26,9 @@
             const whatsapp = getCookie('whatsapp');
             let newWhatsApp;
             const phoneNumbers = [
-                '5541985233258', 
-                '5541991419870', 
-                '5541985323069'
+                '554185233258', 
+                '554191419870', 
+                '554185323069'    // Outro número adicionado
             ];
 
             if (!whatsapp) {
@@ -21,7 +36,13 @@
                 newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
                 setCookie('whatsapp', newWhatsApp, 365);
             } else {
-                newWhatsApp = whatsapp;
+                newWhatsApp = parseInt(whatsapp); // Garantir que seja um número
+            }
+
+            // Verifique se newWhatsApp é um índice válido
+            if (newWhatsApp < 0 || newWhatsApp >= phoneNumbers.length) {
+                console.error("Número de WhatsApp inválido:", newWhatsApp);
+                return;
             }
 
             const source = determineSource();
@@ -43,20 +64,21 @@
         function getGreeting() {
             const hours = new Date().getHours();
             if (hours >= 5 && hours < 12) {
-                return ",";
+                return "Bom dia";
             } else if (hours >= 12 && hours < 18) {
-                return "..";
+                return "Boa tarde";
             } else {
-                return "...";
+                return "Boa noite";
             }
         }
 
         // Função para obter o link do WhatsApp com saudação, origem e número de telefone
         function getWhatsAppLink(phoneNumbers, source, whatsapp, greeting) {
             const phoneNumber = phoneNumbers[whatsapp]; // Seleciona o número de WhatsApp
+            console.log("Número selecionado:", phoneNumber); // Debug
 
             // Gera a mensagem com a saudação, origem e número do WhatsApp
-            const message = `Oi Lê, Vim do ${source}${greeting} Quero saber mais 🍑😈`;
+            const message = `${greeting}, Lê! Vim do ${source}... Quero saber mais 🍑😈. Meu número é ${phoneNumber}.`;
 
             // Monta a URL do WhatsApp com a mensagem
             return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
@@ -72,21 +94,20 @@
 
         // Função para obter um cookie
         function getCookie(name) {
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    const cookieName = name + "=";
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            const cookieName = name + "=";
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(cookieName) == 0) {
+                    return c.substring(cookieName.length, c.length);
+                }
+            }
+            return "";
         }
-        if (c.indexOf(cookieName) == 0) {
-            return parseInt(c.substring(cookieName.length, c.length)); // Converte para número
-        }
-    }
-    return "";
-}
-
 
         // Executar o redirecionamento ao carregar a página
         redirectToWhatsApp();
