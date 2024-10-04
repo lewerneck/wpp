@@ -7,27 +7,35 @@
 <body>
     <script>
         // Função para redirecionar para o WhatsApp
-        function redirectToWhatsApp() {
+      function redirectToWhatsApp() {
     const whatsapp = getCookie('whatsapp');
     let newWhatsApp;
     const phoneNumbers = [
         '554185233258', 
         '554191419870', 
-        '554185323069'
+        '554185323069'    // Outro número adicionado
     ];
 
+    // Se o cookie não existir, gera um novo número aleatório
     if (!whatsapp) {
-        // Gera um número aleatório com base no tamanho da lista de números
         newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
         setCookie('whatsapp', newWhatsApp, 365);
     } else {
         newWhatsApp = parseInt(whatsapp, 10); // Garantir que seja um número
+
         // Verifique se newWhatsApp é um índice válido
         if (isNaN(newWhatsApp) || newWhatsApp < 0 || newWhatsApp >= phoneNumbers.length) {
             console.error("Valor do cookie inválido. Gerando um novo número aleatório.");
             newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
             setCookie('whatsapp', newWhatsApp, 365); // Redefine o cookie
         }
+    }
+
+    // Redefinir o cookie se o número correspondente ao índice não existir mais
+    if (newWhatsApp >= phoneNumbers.length) {
+        console.error("Número removido da lista. Gerando um novo número aleatório.");
+        newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
+        setCookie('whatsapp', newWhatsApp, 365); // Redefine o cookie
     }
 
     const source = determineSource();
