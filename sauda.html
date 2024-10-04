@@ -23,33 +23,37 @@
     <script>
         // Função para redirecionar para o WhatsApp
         function redirectToWhatsApp() {
-            const whatsapp = getCookie('whatsapp');
-            let newWhatsApp;
-            const phoneNumbers = [
-                '554185233258', 
-                '554191419870', 
-                '554185323069'    // Outro número adicionado
-            ];
+    const whatsapp = getCookie('whatsapp');
+    let newWhatsApp;
+    const phoneNumbers = [
+        '554185233258', 
+        '554191419870', 
+        '554185323069', 
+        '5541992131329',
+        '554188765432',  // Novo número adicionado
+        '554199876543'    // Outro número adicionado
+    ];
 
-            if (!whatsapp) {
-                // Gera um número aleatório com base no tamanho da lista de números
-                newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
-                setCookie('whatsapp', newWhatsApp, 365);
-            } else {
-                newWhatsApp = parseInt(whatsapp); // Garantir que seja um número
-            }
-
-            // Verifique se newWhatsApp é um índice válido
-            if (newWhatsApp < 0 || newWhatsApp >= phoneNumbers.length) {
-                console.error("Número de WhatsApp inválido:", newWhatsApp);
-                return;
-            }
-
-            const source = determineSource();
-            const greeting = getGreeting();  // Obtém a saudação
-            const link = getWhatsAppLink(phoneNumbers, source, newWhatsApp, greeting); // Passa a lista de números, saudação, e origem
-            window.location.href = link;
+    if (!whatsapp) {
+        // Gera um número aleatório com base no tamanho da lista de números
+        newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
+        setCookie('whatsapp', newWhatsApp, 365);
+    } else {
+        newWhatsApp = parseInt(whatsapp, 10); // Garantir que seja um número
+        // Verifique se newWhatsApp é um índice válido
+        if (isNaN(newWhatsApp) || newWhatsApp < 0 || newWhatsApp >= phoneNumbers.length) {
+            console.error("Valor do cookie inválido. Gerando um novo número aleatório.");
+            newWhatsApp = Math.floor(Math.random() * phoneNumbers.length);
+            setCookie('whatsapp', newWhatsApp, 365); // Redefine o cookie
         }
+    }
+
+    const source = determineSource();
+    const greeting = getGreeting();  // Obtém a saudação
+    const link = getWhatsAppLink(phoneNumbers, source, newWhatsApp, greeting); // Passa a lista de números, saudação, e origem
+    window.location.href = link;
+}
+
 
         // Função para determinar a origem do usuário
         function determineSource() {
